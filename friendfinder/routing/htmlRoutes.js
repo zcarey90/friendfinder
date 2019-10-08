@@ -1,10 +1,14 @@
-app.get("/survey", function(req, res) {
-  connection.query("SELECT * FROM tasks;", function(err, data) {
-    if (err) throw err;
+var path = require("path");
 
-    res.render("index", { tasks: data });
+module.exports = function(app) {
+  app.get("/survey", function(req, res) {
+      res.sendFile(path.join(__dirname) + "/..public/survey.html");
   });
+
+  app.use("/survey", function(req, res) {
+    res.sendFile(path.join(__dirname) + "/..public/survey.html");
 });
+
 
 
 routes.MapRoute(

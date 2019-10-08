@@ -13,4 +13,4 @@ app.post("/api/friends",  function(req, res) {
     var match = {
         name: "",
         photo: "",
-        friend
+        friends: ""});
