@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Friend Finder</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="http://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+
+    <div class="container">
+
+      <h3>Questions</h3>
+
+      <h4><strong>About you</strong></h4>
+      <h5>Name (Required)</h5>
+      <input type="text" name="" id="name" class="form-control" required>
+
+      <h4>Link to image</h4>
+      <input type="text" name="" id="photo" class="form-control" required>
+
+      <h4>Question 1</h4>
+      <h4>Do you like outdoor sports?</h4>
+      <select data-placeholder="" class="chosen-select" id="q1">
+          <option value=""></option>
+          <option value="1">1 (Strongly Disagree)</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4 (Strongly Agree)</option>
+        </select>
+
+      <h4>Question 2</h4>
+      <h4>Do you love sports?</h4>
+      <select data-placeholder="" class="chosen-select" id="q2">
+          <option value=""></option>
+          <option value="1">1 (Strongly Disagree)</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4 (Strongly Agree)</option>
+        </select>
+
+      <h4>Question 3</h4>
+      <h4>Do you like going to the beach?</h4>
+      <select data-placeholder="" class="chosen-select" id="q3">
+        <option value=""></option>
+        <option value="1">1 (Strongly Disagree)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4 (Strongly Agree)</option>
+      </select>
+
+      <h4>Question 4</h4>
+      <h4>Do you like going to the mountains?</h4>
+      <select data-placeholder="" class="chosen-select" id="q4">
+        <option value=""></option>
+        <option value="1">1 (Strongly Disagree)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4 (Strongly Agree)</option>
+      </select>
+
+      <h4>Question 5</h4>
+      <h4>Do you ever want a family?</h4>
+      <select data-placeholder="" class="chosen-select" id="q5">
+        <option value=""></option>
+        <option value="1">1 (Strongly Disagree)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4 (Strongly Agree)</option>
+      </select>
+
+      <br>
+      <br>
+
+
+      <button class="btn btn-primary" id="submit">Submit</button>
+
+      <footer class="footer">
+       <div class="container">
+         <p><a href="#"> API list</a> | <a href="#">Github Repository</a></p></div>
+      </footer>
+
+      
+
+
+  </body>
+  <script type = "text/javascript">
+  $(document).ready(
+  
+  $("#submit").on("click", function(event) {
+    event.preventDefault();
+    function validateForm() {
+      var isValid = true;
+      $(".form-control").each(function() {
+        if ($(this).val() === "") {
+          isValid = false;
+        }
+      });
+      $(".chosen-select").each(function() {
+        if ($(this).val() === "") {
+          isValid = false;
+        }
+       });
+       return isValid;
+  };
+
+  if (validateForm()) {
+
+    var userData = {
+      name: $("#name").val(),
+      photo: $("#photo").val(),
+      scores: [
+        $("#q1").val(),
+        $("#q2").val(),
+        $("#q3").val(),
+        $("#q4").val(),
+        $("#q5").val()
+      ]
+    };
+    console.log(userData)
+    $.post("/api/friends", userData, function(data) {
+  
+      console.log(data);
+    });
+  
+
+} else {
+  alert("Please fill everything out");
+}
+}
+  )
+  )
+
+  </script>
+
+
+</html>
