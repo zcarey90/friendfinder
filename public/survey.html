@@ -19,6 +19,11 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <style>
+      #match {
+        display: none;
+      }
+    </style>
   </head>
   <body>
 
@@ -141,7 +146,7 @@
     $.post("/api/friends", userData, function(data) {
   
       console.log(data);
-      $("#match").css("display", "visible");
+      $("#match").css("display", "block");
       $("#match img").attr("src", data.match.photo);
       $("#match div p").text(data.match.name);
     });
