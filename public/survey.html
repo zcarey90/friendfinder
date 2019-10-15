@@ -141,9 +141,9 @@
     $.post("/api/friends", userData, function(data) {
   
       console.log(data);
-      $("#match").css("display", "block");
-      $("#match img").attr("src", data.photo);
-      $("#match div p").text(data.name);
+      $("#match").css("display", "visible");
+      $("#match img").attr("src", data.match.photo);
+      $("#match div p").text(data.match.name);
     });
   
 
