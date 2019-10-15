@@ -23,6 +23,12 @@
   <body>
 
     <div class="container">
+      <div id ="match" style="display: none; width: 18rem;">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text"></p>
+        </div>
+      </div>
 
       <h3>Questions</h3>
 
@@ -135,6 +141,9 @@
     $.post("/api/friends", userData, function(data) {
   
       console.log(data);
+      $("#match").css("display", "block");
+      $("#match img").attr("src", data.photo);
+      $("#match div p").text(data.name);
     });
   
 
